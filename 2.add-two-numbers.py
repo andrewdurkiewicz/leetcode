@@ -26,37 +26,24 @@ class Solution:
                         returnNode.next = ListNode()
                     returnNode = returnNode.next
                 # created the next return node, add to it
+                addVal = returnNode.val
                 if l1 is None:
-                    # l2 must not be None.
-                    addVal = l2.val + returnNode.val
-                    if addVal >= 10:
-                        remainder = addVal % 10
-                        returnNode.val = remainder
-                        returnNode.next = ListNode(val = 1)
-                    else:
-                        returnNode.val = addVal
+                    addVal += l2.val
                     l2 = l2.next
                 elif l2 is None:
-                    # l1 must not be None.
-                    addVal = l1.val + returnNode.val
-                    if addVal >= 10:
-                        remainder = addVal % 10
-                        returnNode.val = remainder
-                        returnNode.next = ListNode(val = 1)
-                    else:
-                        returnNode.val = addVal
+                    addVal += l1.val
                     l1 = l1.next
                 else:
-                    #both are not None
-                    addVal = l1.val + l2.val + returnNode.val
-                    if addVal >= 10:
-                        remainder = addVal % 10
-                        returnNode.val = remainder
-                        returnNode.next = ListNode(val = 1)
-                    else:
-                        returnNode.val = addVal
+                    addVal += l1.val + l2.val
                     l1 = l1.next
                     l2 = l2.next
+
+                if addVal >= 10:
+                    remainder = addVal % 10
+                    returnNode.val = remainder
+                    returnNode.next = ListNode(val = 1)
+                else:
+                    returnNode.val = addVal
             else:
                 return first
 
