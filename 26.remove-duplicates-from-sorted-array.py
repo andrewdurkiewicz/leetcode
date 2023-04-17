@@ -5,21 +5,14 @@
 #
 
 # @lc code=start
-
+from collections import OrderedDict
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        unique = 0 # number of unique index
-        index = 0
-        while index < len(nums):
-            curr_value = nums.pop(index)
-            unique+=1
-            while index < len(nums) and nums[index] == curr_value:
-                nums.pop(index)
-            nums.insert(index, curr_value)
-            index+=1
-        return unique
-                
-
-        
+        numbers = OrderedDict()
+        for val in nums:
+            numbers[val] = 1
+        nums[:] = list(numbers.keys())
+        return len(nums)
+      
 # @lc code=end
 
